@@ -33,7 +33,7 @@
     .resume-content {
       display: flex;
       justify-content: space-between;
-      margin: 0 -10px; /* Adjusted margin for sections */
+      margin: 0 -10px;
     }
     section {
       background-color: rgb(216, 236, 244); 
@@ -121,8 +121,6 @@
     <input type="text" id="skills" name="skills" required>
     <label for="lang">Language:</label>
     <input type="text" id="lang" name="lang" required>
-    <label for="Experience">Experience:</label><br>
-    <textarea id="Experience" name="Experience" rows="4" maxlength="500" required></textarea>
     <label for="about">About:</label>
     <textarea id="about" name="about" rows="4" maxlength="500" oninput="updateWordCount()" required></textarea>
     <p id="wordCount">Words remaining: 100</p>
@@ -156,7 +154,6 @@
     const userPhone = document.getElementById('phone').value;
     const userSkills = document.getElementById('skills').value;
     const userLang = document.getElementById('lang').value;
-    const userExp = document.getElementById('Experience').value;
     const userAbout = document.getElementById('about').value;
       const resumeHTML = ` 
       <header>
@@ -178,9 +175,6 @@
         <p>${userEducation}</p>
         <p>${userCourse}</p>
         <p>${userPassingYear}</p>
-      </section>
-      <section>
-        <p>${userExp}</p>
       </section>
       <section class="skills">
         <h2>SKILLS</h2>
