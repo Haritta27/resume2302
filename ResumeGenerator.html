@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Generator</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    .resume-container {
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      background-color: rgb(128, 200, 227);
+      color: aliceblue; /* Font color for heading */
+      border: 2px solid rgb(229, 223, 223);
+      padding: 15px;
+    }
+    h1 {
+      font-size: 24px;
+      color: #333;
+    }
+    p {
+      margin-bottom: 5px;
+    }
+    .resume-content {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 -10px; /* Adjusted margin for sections */
+    }
+    section {
+      background-color: rgb(216, 236, 244); 
+      flex: 1;
+      margin: 0 10px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    h2 {
+      color: #555;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 5px;
+    } 
+  .contact, .education, .skills, .language, .about {
+    width: 45%;
+    border-radius: 25px;
+    margin-bottom: 30px;
+  } 
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #888;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 400px;
+      margin: auto;
+    }
+    main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+    label {
+      margin-top: 10px;
+    }
+    input, textarea {
+      padding: 8px;
+      margin-top: 5px;
+    }
+    .header {
+      background-color: rgb(128, 200, 227);
+      color: aliceblue;
+      border: 2px solid rgb(229, 223, 223);
+      padding: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="resume-container">
+    <header>
+      <h1>RESUME GENERATOR</h1>
+    </header>
+    <main>
+  <form id="resumeForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <label for="Institute">Institute:</label>
+    <input type="text" id="Institute" name="Institute" required>
+    <label for="Education">Education:</label>
+    <input type="text" id="Education" name="Education" required>
+    <label for="Course">Course:</label>
+    <input type="text" id="Course" name="Course" required>
+    <label for="Passing Year">Passing Year:</label>
+    <input type="text" id="Passing Year" name="Passing Year" required>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" name="phone" required>
+    <label for="skills">Skills (comma-separated):</label>
+    <input type="text" id="skills" name="skills" required>
+    <label for="lang">Language:</label>
+    <input type="text" id="lang" name="lang" required>
+    <label for="Experience">Experience:</label><br>
+    <textarea id="Experience" name="Experience" rows="4" maxlength="500" required></textarea>
+    <label for="about">About:</label>
+    <textarea id="about" name="about" rows="4" maxlength="500" oninput="updateWordCount()" required></textarea>
+    <p id="wordCount">Words remaining: 100</p>
+    <button type="button" onclick="generateAndOpenResume()">Generate Resume</button>
+    <br><p align="center"><a href="index1.html"><b>BACK</b></a></p>
+    </form>
+    
+  <script>
+      function generateAndOpenResume() {
+      const generatedResume = generateResume();
+      // Open a new window
+      const newWindow = window.open();
+      // Write the generated resume HTML to the new window
+      newWindow.document.write(generatedResume);
+      newWindow.document.close();
+    }
+    function updateWordCount() {
+      const textarea = document.getElementById('about');
+      const wordCountDisplay = document.getElementById('wordCount');
+      const remainingWords = 100 - textarea.value.split(/\s+/).filter(word => word.length > 0).length;
+      wordCountDisplay.textContent = 'Words remaining: ' + remainingWords;
+    }
+    function generateResume() {
+    const userName = document.getElementById('name').value;
+    document.getElementById("demo").innerHTML=userName;
+    const userInstitute = document.getElementById('Institute').value;
+    const userEducation = document.getElementById('Education').value;
+    const userCourse = document.getElementById('Course').value;
+    const userPassingYear = document.getElementById('Passing Year').value;
+    const userEmail = document.getElementById('email').value;
+    const userPhone = document.getElementById('phone').value;
+    const userSkills = document.getElementById('skills').value;
+    const userLang = document.getElementById('lang').value;
+    const userExp = document.getElementById('Experience').value;
+    const userAbout = document.getElementById('about').value;
+      const resumeHTML = ` 
+      <header>
+        <h1 align="center">${userName}</h1>
+        <hr>
+      </header>
+      <section class="about">
+        <h2>ABOUT</h2>
+        <p>${userAbout}</p>
+      </section>
+      <section class="contact">
+        <h2>CONTACT</h2>
+        <p>Email: ${userEmail}</p>
+        <p>Phone: ${userPhone}</p>
+      </section>
+      <section class="education">
+        <h2>EDUCATION</h2>
+        <p>${userInstitute}</p>
+        <p>${userEducation}</p>
+        <p>${userCourse}</p>
+        <p>${userPassingYear}</p>
+      </section>
+      <section>
+        <p>${userExp}</p>
+      </section>
+      <section class="skills">
+        <h2>SKILLS</h2>
+        <ul>${userSkills.split(',').map(skill => `<li>${skill.trim()}</li>`).join('')}</ul>
+      </section>
+      <section class="language">
+        <h2>LANGUAGE</h2>
+        <ul>${userLang.split(',').map(lang => `<li>${lang.trim()}</li>`).join('')}</ul>
+      </section>
+      <br><p align="center"><a href="index1.html"><b>BACK</b></a></p>
+      <footer align="center">
+        <p>&copy; 2024 ${userName}. All rights reserved.</p>
+      </footer>
+    ` ;
+      return resumeHTML;
+    }
+  </script>
+  </main>
+</body>
+</html>

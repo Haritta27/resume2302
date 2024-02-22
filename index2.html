@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HARITTA_22BCE2302</title>
+<style>
+    body {
+    font-family:Georgia;
+    margin: 1;
+    padding: 20px;
+  } 
+  header {
+    text-align: center;
+  } 
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  section {
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-top: 10px;
+    background-color: rgb(216, 236, 244);   
+  }
+  a:link, a:visited {
+    background-color: white;
+    color: black;
+    border: 2px solid rgb(8, 167, 206);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  a:hover, a:active {
+    background-color: rgb(143, 216, 247);
+    color: white;
+  }
+  #grad1 {
+    height: 50px;
+    background-image: linear-gradient(to top,  rgb(252, 252, 252),rgb(205, 230, 239));
+  }
+  .personal-info, .education, .skills, .experience, .contact,.about {
+    width: 45%;
+    border-radius: 25px;
+  } 
+  h1{
+    margin-bottom: 20px;
+    font-size: 3em;
+  }
+  h2{
+    margin-bottom: 20px;
+    font-size: 2em;
+  }
+  h3, h4 {
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+  } 
+  ul {
+    list-style-type: circle;
+    padding-bottom: 20px;
+  }
+  footer {
+    float:center;
+    text-align: center;
+}
+hr {
+  border: 1px solid #ccc; 
+}
+</style>
+</head>
+<body>
+  <div id="grad1"></div>
+  <div class="resume-container">
+    <header>
+      <h1>RESUME GENERATOR</h1>
+    </header>
+    <main>
+      <form id="resumeForm" action="resume_page.html" method="post">    
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="Institute">Institute:</label>
+        <input type="text" id="Institute" name="Institute" required><br><br>
+        <label for="Education">Education:</label>
+        <input type="text" id="Education" name="Education" required><br><br>
+        <label for="Course">Course:</label>
+        <input type="text" id="Course" name="Course" required><br><br>
+        <label for="Passing_Year">Passing Year:</label> <!-- Corrected the id -->
+        <input type="text" id="Passing_Year" name="Passing_Year" required><br><br> <!-- Corrected the id -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required><br><br>
+        <label for="skills">Skills (comma-separated):</label>
+        <input type="text" id="skills" name="skills" required><br><br>
+        <label for="about">About:</label><br>
+        <textarea id="about" name="about" rows="4" maxlength="500" required></textarea><br><br>
+        <label for="Experience">Experience:</label><br>
+        <textarea id="Experience" name="Experience" rows="4" maxlength="500" required></textarea><br><br>
+        <label for="lang">Language:</label>
+        <input type="text" id="lang" name="lang" required><br><br>
+        <input type="hidden" id="generatedResume" name="generatedResume">
+        <button type="button" onclick="generateAndOpenResume()">Generate Resume</button>
+     </form>
+  <script>
+    function generateAndOpenResume() {
+    const generatedResume = generateResume();
+    // Open a new window
+    const newWindow = window.open();
+    // Write the generated resume HTML to the new window
+    newWindow.document.write(generatedResume);
+    newWindow.document.close();
+  } 
+  function generateResume() {
+  let userName = document.getElementById('name').value;
+  document.getElementById("demo").innerHTML=userName;
+  let userInstitute = document.getElementById('Institute').value;
+  document.getElementById("demo1").innerHTML=userInstitute;
+  let userEducation = document.getElementById('Education').value;
+  document.getElementById("demo2").innerHTML=userEducation;
+  let userCourse = document.getElementById('Course').value;
+  document.getElementById("demo3").innerHTML=userCourse;
+  let userPassingYear = document.getElementById('Passing Year').value;
+  document.getElementById("demo4").innerHTML=userPassingYear;
+  let userEmail = document.getElementById('email').value;
+  document.getElementById("demo5").innerHTML=userEmail;
+  let userPhone = document.getElementById('phone').value;
+  document.getElementById("demo6").innerHTML=userPhone;
+  let userSkills = document.getElementById('skills').value;
+  document.getElementById("demo7").innerHTML=userSkills;
+  let userLang = document.getElementById('lang').value;
+  document.getElementById("demo8").innerHTML=userLang;
+  let userAbout = document.getElementById('about').value;
+  document.getElementById("demo9").innerHTML=userAbout;
+  let userExp = document.getElementById('Experience').value;
+  document.getElementById("demo10").innerHTML=userExp;
+  }
+  </script>
+<main>
+  <h1 align="center" id="demo"></h1>
+  <section class="personal-info">
+    <h3>Personal Information</h3>
+    <ul>
+    </ul>
+  </section>
+  <section class="education"> 
+    <h3>Education</h3>
+    <ul>
+      <li>Institute:<p id="demo1"></p></li>
+      <li><p id="demo2"></p></li>
+      <li><p id="demo3"></p></li>
+      <li><p id="demo4"></p></li>
+      </ul>
+  </section>
+  <section class="skills">
+    <h3>Skills</h3>
+    <p id="demo7"></p>
+  </section>
+  <section class="experience">
+    <h3>Experience</h3>
+    <ul>
+      <li>
+        <p id="demo10"></p>
+      </li>
+      </ul>
+  </section>
+  <section class="contact">
+    <h3>Contact</h3>
+    <p id="demo5"></p>
+    <p id="demo6"></p>
+  </section>
+  <section class="about">
+    <h3>ABOUT</h3>
+    <p id="demo9"></p>
+  </section>
+  <br><p align="center"><a href="index1.html"><b>BACK</b></a></p>
+</main>
+</body>
+</html>
